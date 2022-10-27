@@ -2,6 +2,7 @@ import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { CommonModule } from './common/common.module';
 import { LogRequestMiddleware } from './common/middleware';
+import { TypeormConfig } from './imports';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { LogRequestMiddleware } from './common/middleware';
       isGlobal: true,
     }),
     CommonModule,
+    TypeormConfig.forRootAsync(),
   ],
   providers: [Logger],
 })

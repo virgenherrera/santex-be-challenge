@@ -38,3 +38,6 @@ lerna-debug.log*
 
 # Env file
 .env
+
+# sqlite databases
+*.sqlite
