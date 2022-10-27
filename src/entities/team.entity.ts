@@ -2,14 +2,19 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
   PrimaryColumn,
-  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Coach } from './coach.entity';
+import { Competition } from './competition.entity';
+import { Player } from './player.entity';
 
 @Entity({ name: Team.name.toLowerCase() })
 export class Team {
-  @PrimaryGeneratedColumn('uuid') uuid: string;
   @PrimaryColumn() id: number;
   @Column() name: string;
   @Column() tla: string;
@@ -18,4 +23,15 @@ export class Team {
   @Column() address: string;
   @CreateDateColumn() createdAt: Date;
   @UpdateDateColumn() updatedAt: Date;
+
+  /* --- Relationships --- */
+  @ManyToOne(() => Competition, competition => competition.teams)
+  competition: Competition;
+
+  @OneToOne(() => Coach, { cascade: true })
+  @JoinColumn()
+  coach: Coach;
+
+  @OneToMany(() => Player, player => player.team, { cascade: true })
+  squad: Player[];
 }

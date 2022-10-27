@@ -2,19 +2,23 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryColumn,
-  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Team } from './team.entity';
 
 @Entity({ name: Player.name.toLowerCase() })
 export class Player {
-  @PrimaryGeneratedColumn('uuid') uuid: string;
   @PrimaryColumn() id: number;
   @Column() name: string;
-  @Column() position: string;
-  @Column() dateOfBirth: string;
+  @Column({ nullable: true }) position: string;
+  @Column({ nullable: true }) dateOfBirth: string;
   @Column() nationality: string;
   @CreateDateColumn() createdAt: Date;
   @UpdateDateColumn() updatedAt: Date;
+
+  /* --- Relationships --- */
+  @ManyToOne(() => Team, team => team.squad)
+  team: Team;
 }
