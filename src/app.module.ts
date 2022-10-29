@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CommonModule } from './common/common.module';
 import { LogRequestMiddleware } from './common/middleware';
 import { TypeormConfig } from './imports';
+import { ImportLeagueModule } from './import-league/import-league.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { TypeormConfig } from './imports';
     }),
     CommonModule,
     TypeormConfig.forRootAsync(),
+    ImportLeagueModule,
   ],
   providers: [Logger],
 })
