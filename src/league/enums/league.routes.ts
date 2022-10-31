@@ -1,3 +1,3 @@
 export enum LeagueRoute {
-  players = '/league/:leagueId/players',
+  players = '/league/:leagueCode/players',
 }
