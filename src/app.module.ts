@@ -5,6 +5,7 @@ import { LogRequestMiddleware } from './common/middleware';
 import { ImportLeagueModule } from './import-league/import-league.module';
 import { TypeormConfig } from './imports';
 import { LeagueModule } from './league/league.module';
+import { TeamModule } from './team/team.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { LeagueModule } from './league/league.module';
     TypeormConfig.forRootAsync(),
     ImportLeagueModule,
     LeagueModule,
+    TeamModule,
   ],
   providers: [Logger],
 })

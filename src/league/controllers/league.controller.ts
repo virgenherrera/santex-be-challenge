@@ -21,8 +21,6 @@ export class LeagueController {
     @Param('leagueCode') leagueCode: string,
     @Query(DtoValidation.pipe) query: GetLeagueTeamQueryDto,
   ) {
-    console.log(query);
-
     return this.playersService.getTeam(
       leagueCode,
       query.teamName,
