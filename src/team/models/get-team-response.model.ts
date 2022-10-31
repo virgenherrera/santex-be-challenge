@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Coach } from './coach.mode';
-import { Player } from './player.model';
+import { Coach, Player } from '../../league/models';
 
 export class GetTeamResponse {
   @ApiProperty({ isArray: true, type: Player }) players: Player[];

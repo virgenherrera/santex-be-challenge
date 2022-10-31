@@ -53,8 +53,6 @@ export class LeagueService {
 
     queryBuilder.where('team.name = :teamName', { teamName });
 
-    console.log(queryBuilder.getQueryAndParameters());
-
     const team = await queryBuilder.getOne();
 
     if (!team)

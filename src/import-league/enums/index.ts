@@ -1,1 +1,1 @@
-export * from './import-league.routes';
+export * from './import-league-routes.enum';
