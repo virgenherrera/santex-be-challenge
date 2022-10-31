@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { ImportLeagueRoute } from '../../../src/import-league/enums';
 import { ImportLeagueMatcher } from '../../matchers';
 import { mockHttpService } from '../../mocks';
-import { getMockData, TestContext } from '../../utils';
+import { dbCleanup, getMockData, TestContext } from '../../utils';
 
 const enum should {
   initTestContext = 'Should test Context be properly initialized.',
@@ -31,7 +31,11 @@ describe(`e2e: (POST)${ImportLeagueRoute.importLeague}`, () => {
     expect(testCtx.app).toBeInstanceOf(NestApplication);
   });
 
-  afterAll(() => jest.resetAllMocks());
+  afterAll(async () => {
+    jest.resetAllMocks();
+
+    await dbCleanup(testCtx);
+  });
 
   it(should.pullDataFromApiAndPopulate, async () => {
     const { status, body } = await testCtx.request.post(

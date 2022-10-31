@@ -1,7 +1,7 @@
 import { NestApplication } from '@nestjs/core';
 import { LeagueRoute } from '../../../src/league/enums';
 import { LeaguePlayersMatcher } from '../../matchers';
-import { TestContext } from '../../utils';
+import { dbCleanup, dbPopulate, TestContext } from '../../utils';
 
 const enum should {
   initTestContext = 'Should test Context be properly initialized.',
@@ -14,7 +14,15 @@ const enum should {
 describe(`e2e: (GET)${LeagueRoute.players}`, () => {
   let testCtx: TestContext = null;
 
-  beforeAll(async () => (testCtx = await TestContext.getInstance()));
+  beforeAll(async () => {
+    testCtx = await TestContext.getInstance();
+
+    await dbPopulate(testCtx);
+  });
+
+  afterAll(async () => {
+    await dbCleanup(testCtx);
+  });
 
   it(should.initTestContext, async () => {
     expect(testCtx).not.toBeNull();
@@ -30,7 +38,7 @@ describe(`e2e: (GET)${LeagueRoute.players}`, () => {
     expect(status).toBe(404);
   });
 
-  it(should.throw404League, async () => {
+  it(should.throw404TeamName, async () => {
     const teamName = 'non-existent-team-name';
     const { status, body } = await testCtx.request
       .get(LeagueRoute.players.replace(':leagueCode', 'BSA'))
