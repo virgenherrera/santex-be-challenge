@@ -1,1 +1,1 @@
-export * from './players.controller';
+export * from './league.controller';

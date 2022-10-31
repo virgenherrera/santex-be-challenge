@@ -9,7 +9,7 @@ import {
 } from '../../entities';
 
 @Injectable()
-export class PlayersService {
+export class LeagueService {
   constructor(
     @InjectRepository(CompetitionEntity)
     private readonly competitionRepository: Repository<CompetitionEntity>,
@@ -19,7 +19,7 @@ export class PlayersService {
     private readonly playerRepository: Repository<PlayerEntity>,
   ) {}
 
-  async getLeaguePlayers(
+  async getPlayers(
     leagueCode: string,
     teamName?: string,
   ): Promise<PlayerEntity[]> {
@@ -38,6 +38,29 @@ export class PlayersService {
     }
 
     return query.getMany();
+  }
+
+  async getTeam(
+    leagueCode: string,
+    teamName: string,
+    getPlayers?: boolean,
+  ): Promise<TeamEntity> {
+    await this.leagueExists(leagueCode);
+
+    const queryBuilder = await this.teamRepository.createQueryBuilder('team');
+
+    if (getPlayers) queryBuilder.innerJoinAndSelect('team.squad', 'squad');
+
+    queryBuilder.where('team.name = :teamName', { teamName });
+
+    console.log(queryBuilder.getQueryAndParameters());
+
+    const team = await queryBuilder.getOne();
+
+    if (!team)
+      throw new NotFound(`The team with name: '${teamName}' does not exist`);
+
+    return team;
   }
 
   private async leagueExists(leagueCode: string): Promise<CompetitionEntity> {
