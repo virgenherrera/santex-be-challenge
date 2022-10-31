@@ -1,8 +1,11 @@
+import { HttpService } from '@nestjs/axios';
 import { INestApplication } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import * as supertest from 'supertest';
 import { AppModule } from '../../src/app.module';
 import { MockEnvConfigProvider } from '../../src/common/services/__mocks__';
+import { mockConfigService, mockHttpService } from '../mocks';
 
 export class TestContext {
   private static instance: TestContext = null;
@@ -24,8 +27,12 @@ export class TestContext {
     const testingModule = await Test.createTestingModule({
       imports: [AppModule],
     })
-      .overrideProvider(MockEnvConfigProvider.provide)
+      .overrideProvider(MockEnvConfigProvider)
       .useValue(MockEnvConfigProvider.useValue)
+      .overrideProvider(ConfigService)
+      .useValue(mockConfigService)
+      .overrideProvider(HttpService)
+      .useValue(mockHttpService)
       .compile();
 
     this.app = testingModule.createNestApplication();

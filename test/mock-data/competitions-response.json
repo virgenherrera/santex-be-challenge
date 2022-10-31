@@ -1,0 +1,31 @@
+{
+  "count": 13,
+  "filters": {
+    "client": "Hugo Virgen"
+  },
+  "competitions": [
+    {
+      "id": 2013,
+      "area": {
+        "id": 2032,
+        "name": "Brazil",
+        "code": "BRA",
+        "flag": "https://crests.football-data.org/764.svg"
+      },
+      "name": "Campeonato Brasileiro Série A",
+      "code": "BSA",
+      "type": "LEAGUE",
+      "emblem": "https://crests.football-data.org/764.svg",
+      "plan": "TIER_ONE",
+      "currentSeason": {
+        "id": 1377,
+        "startDate": "2022-04-10",
+        "endDate": "2022-11-13",
+        "currentMatchday": 34,
+        "winner": null
+      },
+      "numberOfAvailableSeasons": 6,
+      "lastUpdated": "2021-07-20T18:42:17Z"
+    }
+  ]
+}
