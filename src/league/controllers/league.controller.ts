@@ -23,12 +23,8 @@ export class LeagueController {
   @GetLeagueTeam()
   async getLeagueTeam(
     @Param('leagueCode') leagueCode: string,
-    @Query(DtoValidation.pipe) query: GetLeagueTeamQueryDto,
+    @Query(DtoValidation.pipe) { teamName, players }: GetLeagueTeamQueryDto,
   ) {
-    return this.playersService.getTeam(
-      leagueCode,
-      query.teamName,
-      query.players,
-    );
+    return this.playersService.getTeam(leagueCode, teamName, players);
   }
 }
