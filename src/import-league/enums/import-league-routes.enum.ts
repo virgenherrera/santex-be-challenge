@@ -1,3 +1,3 @@
 export enum ImportLeagueRoute {
-  importLeague = '/import-league',
+  importLeagues = '/import-leagues',
 }

@@ -6,7 +6,7 @@ import { ImportedCompetitionsResponse } from '../models';
 export function PostImportLeague() {
   return applyDecorators(
     ApiOperation({
-      summary: `POST ${ImportLeagueRoute.importLeague}`,
+      summary: `POST ${ImportLeagueRoute.importLeagues}`,
       description: 'Pull data from remote API and populates DB.',
     }),
     ApiResponse({

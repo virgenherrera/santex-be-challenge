@@ -10,7 +10,7 @@ export class ImportLeagueController {
 
   constructor(private importLeagueService: ImportLeagueService) {}
 
-  @Post(ImportLeagueRoute.importLeague)
+  @Post(ImportLeagueRoute.importLeagues)
   @PostImportLeague()
   async postImportLeague(): Promise<ImportedCompetitionsResponse> {
     this.logger.verbose('postImportLeague');

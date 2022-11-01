@@ -1,49 +1,52 @@
 # Description
 
-basic [Nest](https://github.com/angular/angular) framework TypeScript starter repository.
+This is Hugo Virgen's answer to the following [Code Challenge.](./doc-assets/Santex_Backend_Test.pdf)
 
-## Installation
+## Tech stack
 
-```bash
-npm install
-```
+- Node.js
+- Nestjs.
+- typeorm.
+- sqlite
 
-## Running the app
+##  Data Schema
 
-### development with watch mode
+Given the specs described by challenge we will store the fulfilling this Schema.
+![ER diagram](./doc-assets/er.png)
 
-```bash
-npm start
-```
+## API endpoints
 
-### production mode
+- POST /import-leagues
+- GET /league/:leagueCode/players
+- GET /league/:leagueCode/team
+- GET /teams/:teamId/players
 
-```bash
-npm run start:prod
-```
+## Setup this project
 
-## Testing the app
+1. Install project's dependencies and build application bundles by running `npm install` command.
+2. create a `.env` file in project Root Directory (Using provided `.env.example` file in the same directory).
+3. provide your valid football-data.org ApiKey as FOOTBALL_DATA_API_KEY Environment variable in `.env` file (otherwise project will never run).
 
-### run unit/integration tests
+## Optional: Build API Documentation
 
-```bash
-npm run test
-```
-
-### detect current changes and execute just the involved Test Suites
-
-```bash
-npm run test:ut:develop
-```
-
-### run unit/integration tests with code coverage
+This project will build OpenAPI documentation during postinstall script.
 
 ```bash
-npm run test:cov
+npm run build:api-docs # <- run this script ONLY if api-docs/swagger.json file does not exist
+
+# use Redoc CLI to parse file into HTML.
+npx redoc-cli bundle -o api-docs/index.html api-docs/swagger.json
+
+# launch docs using http-server.
+npx http-server ./api-docs # <- Optionally launch docs using http-server.
 ```
 
-### Local Full build (emulates locally the CI pipeline)
+After these steps, either open  `api-docs/index.html` with your browser or launch with `http-server` and navigate [localhost:8080](http://127.0.0.1:8080/) to read api-docs.
+
+### Optional: Run tnd-to-end tests
 
 ```bash
-npm run local:ci
+npm run test:e2e
 ```
+
+this command will generate coverage report files in `coverage/e2e` Path

@@ -10,7 +10,7 @@ const enum should {
   pullDataFromApiAndPopulate = 'Should pull data from "football-data" API and populate database',
 }
 
-describe(`e2e: (POST)${ImportLeagueRoute.importLeague}`, () => {
+describe(`e2e: (POST)${ImportLeagueRoute.importLeagues}`, () => {
   let testCtx: TestContext = null;
 
   beforeAll(async () => {
@@ -39,7 +39,7 @@ describe(`e2e: (POST)${ImportLeagueRoute.importLeague}`, () => {
 
   it(should.pullDataFromApiAndPopulate, async () => {
     const { status, body } = await testCtx.request.post(
-      ImportLeagueRoute.importLeague,
+      ImportLeagueRoute.importLeagues,
     );
 
     expect(status).toBe(201);
