@@ -20,7 +20,7 @@ export class TeamService {
       },
     });
 
-    if (!team) throw new NotFound(`The team with name: '${id}' does not exist`);
+    if (!team) throw new NotFound(`The team with id: '${id}' does not exist`);
 
     return team;
   }
