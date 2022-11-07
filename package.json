@@ -27,7 +27,7 @@
     "postinstall": "run-s -l cleanup build:*"
   },
   "dependencies": {
-    "@nestjs/axios": "^0.1.0",
+    "@nestjs/axios": "^1.0.0",
     "@nestjs/common": "^9.1.6",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.1.6",
